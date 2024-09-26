@@ -25,8 +25,8 @@ class AuthorController extends AbstractController
     public function listAuthors(): Response
     {
         $authors=[
-            ['authorName'=>'tata papa', 'picture'=>'assets/images/picture1.jpg', 'authorEmail'=>'tata@gmail.com', 'nbrBooks'=>201],
-            ['authorName'=>'patron', 'picture'=>'assets/images/made.png', 'authorEmail'=>'patron@gmail.com', 'nbrBooks'=>3]
+            ['authorName'=>'tata papa', 'picture'=>'images/picture1.jpg', 'authorEmail'=>'tata@gmail.com', 'nbrBooks'=>201],
+            ['authorName'=>'patron', 'picture'=>'images/made.png', 'authorEmail'=>'patron@gmail.com', 'nbrBooks'=>3]
         ];
         return $this->render('author/listAuthors.html.twig',
             array(

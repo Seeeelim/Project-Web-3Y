@@ -4,6 +4,9 @@
     </head>
 
     <body>
+        {% set nbrTotalBooks = 0 %}
+
+        {% if authors is defined and authors is not empty %}
         <table>
             <tr>
                 <th>Name</th>
@@ -13,11 +16,20 @@
             </tr>
 
             <tr {% for author in authors %}>
-                <td>{{author.authorName}}</td>
-                <td>{{author.picture}}</td>
+                {% set nbrTotalBooks = nbrTotalBooks + author.nbrBooks %}
+                <td>{{author.authorName | upper}}</td>
+                <td><img src="{{ asset(author.picture) }}" width=40%></td>
                 <td>{{author.authorEmail}}</td>
                 <td>{{author.nbrBooks}}</td>
             </tr {% endfor %}>
         </table>
+
+        <h1>The number of authors : {{ authors | length }}</h1>
+
+        <h1>The number of books of all authors combined is : {{ nbrTotalBooks }}</h1>
+
+        {% else %}
+            <h1>This table is not defined</h1>
+        {% endif %}
     </body>
 </html>
