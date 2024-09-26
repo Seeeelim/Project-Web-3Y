@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <title>List of authors</title>
+    </head>
+
+    <body>
+        <table>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Email</th>
+                <th>Number of books</th>
+            </tr>
+
+            <tr {% for author in authors %}>
+                <td>{{author.authorName}}</td>
+                <td>{{author.picture}}</td>
+                <td>{{author.authorEmail}}</td>
+                <td>{{author.nbrBooks}}</td>
+            </tr {% endfor %}>
+        </table>
+    </body>
+</html>

@@ -20,4 +20,17 @@ class AuthorController extends AbstractController
             'authorEmail' => $authorEmail
         ));
     }
+
+    #[Route('/list', name: 'app_author_list')]
+    public function listAuthors(): Response
+    {
+        $authors=[
+            ['authorName'=>'tata papa', 'picture'=>'assets/images/picture1.jpg', 'authorEmail'=>'tata@gmail.com', 'nbrBooks'=>201],
+            ['authorName'=>'patron', 'picture'=>'assets/images/made.png', 'authorEmail'=>'patron@gmail.com', 'nbrBooks'=>3]
+        ];
+        return $this->render('author/listAuthors.html.twig',
+            array(
+                'authors' => $authors
+            ));
+    }
 }
