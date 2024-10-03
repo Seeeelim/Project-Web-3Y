@@ -22,6 +22,9 @@ class Author
     #[ORM\Column(nullable: true)]
     private ?int $nbrBooks = null;
 
+    #[ORM\Column(length: 255, nullable: true)]
+    private ?string $address = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +62,18 @@ class Author
     public function setNbrBooks(?int $nbrBooks): static
     {
         $this->nbrBooks = $nbrBooks;
+
+        return $this;
+    }
+
+    public function getAddress(): ?string
+    {
+        return $this->address;
+    }
+
+    public function setAddress(?string $address): static
+    {
+        $this->address = $address;
 
         return $this;
     }
