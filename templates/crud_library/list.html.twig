@@ -1,0 +1,166 @@
+<html>
+    <head>
+                <title>List of libraries from database</title>
+                <style>
+                        /* General body styling */
+                        body {
+                            font-family: 'Poppins', sans-serif;
+                            margin: 0;
+                            padding: 20px;
+                            background-color: #f0f2f5;
+                            color: #333;
+                        }
+
+                        h1 {
+                            text-align: center;
+                            color: #333;
+                            font-size: 2.5em;
+                            margin-bottom: 20px;
+                            font-weight: 700;
+                            letter-spacing: 1px;
+                        }
+
+                        /* Table styling */
+                        table {
+                            width: 100%;
+                            border-collapse: collapse;
+                            margin-bottom: 30px;
+                            background-color: #fff;
+                            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+                            border-radius: 10px;
+                            overflow: hidden;
+                        }
+
+                        th, td {
+                            padding: 20px;
+                            text-align: left;
+                        }
+
+                        th {
+                            background-color: #4A90E2;
+                            color: white;
+                            font-size: 1.2em;
+                            letter-spacing: 0.5px;
+                            text-transform: uppercase;
+                        }
+
+                        td {
+                            font-size: 1.1em;
+                            color: #555;
+                        }
+
+                        tr:nth-child(even) {
+                            background-color: #f9f9f9;
+                        }
+
+                        tr:hover {
+                            background-color: #f1f1f1;
+                            transition: background-color 0.3s ease;
+                        }
+
+                        /* Button styling */
+                        .btn {
+                            padding: 8px 15px;
+                            font-size: 1em;
+                            border-radius: 5px;
+                            text-decoration: none;
+                            margin-right: 10px;
+                            transition: background-color 0.3s ease;
+                            display: inline-block;
+                            text-transform: uppercase;
+                        }
+
+                        .btn-edit {
+                            background-color: #4CAF50;
+                            color: white;
+                        }
+
+                        .btn-edit:hover {
+                            background-color: #45A049;
+                        }
+
+                        .btn-delete {
+                            background-color: #F44336;
+                            color: white;
+                        }
+
+                        .btn-delete:hover {
+                            background-color: #D32F2F;
+                        }
+
+                        .btn-add {
+                            background-color: #2196F3;
+                            color: white;
+                            text-align: center;
+                            padding: 10px 20px;
+                            margin-top: 20px;
+                            display: block;
+                            width: 200px;
+                            text-align: center;
+                            margin: 20px auto;
+                        }
+
+                        .btn-add:hover {
+                            background-color: #1976D2;
+                        }
+
+                        /* Mobile responsiveness */
+                        @media screen and (max-width: 768px) {
+                            th, td {
+                                padding: 10px;
+                            }
+
+                            h1 {
+                                font-size: 2em;
+                            }
+
+                            .btn {
+                                font-size: 0.9em;
+                                padding: 6px 12px;
+                            }
+
+                            .btn-add {
+                                width: 100%;
+                            }
+                        }
+                    </style>
+                    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
+            </head>
+
+    <body>
+        <h1>List Libraries</h1>
+        <div class="container">
+            <div class="table-container">
+                {% if list is defined and list is not empty %}
+                    <table>
+                        <tr>
+                           <th>ID</th>
+                           <th>Name</th>
+                           <th>Website</th>
+                           <th>date creation</th>
+                           <th>Actions</th>
+                        </tr>
+
+                        {% for library in list %}
+                        <tr>
+                           <td> {{ library.id }} </td>
+                           <td> {{ library.name}} </td>
+                           <td> {{ library.website }} </td>
+                           <td> {{ library.dateCreation|date }} </td>
+                           <td>
+                                <a href="{{ path('app_crud_library_edit', {id: library.id}) }}" class="btn btn-edit">Edit</a>
+                                <a href="{{ path('app_crud_library_delete', {id: library.id}) }}" class="btn btn-delete" onclick="return confirm('Are you sure?');">Delete</a>
+                           </td>
+                        </tr>
+                    <a href="{{ path('app_crud_library_add', {id: library.id}) }}" class="btn btn-add">Add Library</a>
+                        {% endfor %}
+                    </table>
+                {% else %}
+                    <h1>This table is not defined or empty</h1>
+                {% endif %}
+            </div>
+        </div>
+    </body>
+        </html>
+</html>

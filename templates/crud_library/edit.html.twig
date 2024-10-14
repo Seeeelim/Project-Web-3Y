@@ -1,6 +1,6 @@
 <html>
     <head>
-                <title>List of Authors from database</title>
+                <title>List of libraries from database</title>
                 <style>
                     /* General body styling */
                     body {
@@ -137,26 +137,10 @@
             </head>
 
     <body>
-        {% if list is defined and list is not empty %}
-        <table>
-            <tr>
-                <th>Identifiant</th>
-                <th>Name</th>
-                <th>Email</th>
-                <th>Address</th>
-                <th>Number of books</th>
-            </tr>
-
-            <tr {% for author in list %}>
-                <td>{{author.id}}</td>
-                <td>{{author.name}}</td>
-                <td>{{author.email}}</td>
-                <td>{{author.address}}</td>
-                <td>{{author.nbrBooks}}</td>
-            </tr {% endfor %}>
-        </table>
-        {%else%}
-            <h1>It is etiher empty or doesn't exist</h1>
-        {%endif%}
+         <h1>Edit Library</h1>
+         {{ form_start(form) }}
+              {{ form_widget(form) }}
+              <button type="submit">Save Changes</button>
+         {{ form_end(form) }}
     </body>
 </html>
