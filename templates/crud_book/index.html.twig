@@ -1,0 +1,19 @@
+<html>
+    <head></head>
+
+    <body>
+        <table width="100%">
+            <tr>
+                <th>Title</th>
+                <th>number of pages</th>
+                <th>Author name</th>
+            </tr>
+
+            <tr {% for book in books %}>
+                <td>{{ book.title }}</td>
+                <td>{{ book.nbrPages }}</td>
+                <td>{{ book.author.name }}</td>
+            </tr {% endfor %}>
+        </table>
+    </body>
+</html>
