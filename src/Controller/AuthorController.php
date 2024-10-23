@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Repository\AuthorRepository;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -32,5 +33,24 @@ class AuthorController extends AbstractController
             array(
                 'authors' => $authors
             ));
+    }
+
+    #[Route('/list', name: 'list_authors_by_library')]
+    public function listAuthorsByLibrary(int $libraryId, AuthorRepository $authorRepository): Response
+    {
+        // Recherche des auteurs en fonction de l'identifiant de la bibliothèque
+        $authors = $authorRepository->findBy(['library' => $libraryId]);
+
+        $authorsData = [];
+        foreach ($authors as $author) {
+            $authorsData[] = [
+                'id' => $author->getId(),
+                'name' => $author->getName(),
+                'email' => $author->getEmail(),
+                'nbrBooks' => $author->getNbrBooks(),
+                'address' => $author->getAddress(),
+            ];
+        }
+        return $this->json($authorsData);
     }
 }
